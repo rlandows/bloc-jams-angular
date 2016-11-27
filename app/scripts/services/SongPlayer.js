@@ -10,12 +10,18 @@
         */
          var currentBuzzObject = null;
          
-         /**
+        
+         
+         var playSong = function(song) {
+             currentBuzzObject.play();
+             song.playing = true;
+         };
+         
+          /**
         * @function setSong
         * @desc Stops currently playing song and loads new audio file as currentBuzzObject
         * @param {Object} song
         */
-         
          var setSong = function(song) {
             if (currentBuzzObject) {
             currentBuzzObject.stop();
@@ -34,13 +40,12 @@
              
              if (currentSong !== song) {
               setSong(song);
-            currentBuzzObject.play();
-            song.playing = true;
+                playSong(song);
                  
-         currentBuzzObject.play();   
+            
         } else if (currentSong === song) {
             if (currentBuzzObject.isPaused()) {
-                currentBuzzObject.play();
+                playSong(song);
                 
             }
         }
