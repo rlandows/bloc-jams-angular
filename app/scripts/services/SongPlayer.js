@@ -10,7 +10,11 @@
         */
          var currentBuzzObject = null;
          
-        
+        /**
+        *@function playSong
+        * @desc plays the song
+        @param {Object} song
+        */
          
          var playSong = function(song) {
              currentBuzzObject.play();
