@@ -33,6 +33,16 @@
              song.playing = true;
          };
          
+         /**
+        * @function stopSong
+        * @desc Stops the song
+        * @param {Object} song
+        */
+        var stopSong = function(song) {
+            currentBuzzObject.stop();
+            song.playing = null;
+        };
+         
           /**
         * @function setSong
         * @desc Stops currently playing song and loads new audio file as currentBuzzObject
@@ -83,8 +93,7 @@
             currentSongIndex--;
              
              if (currentSongIndex < 0) {
-                currentBuzzObject.stop();
-                SongPlayer.currentSong.playing = null;
+                stopSong(SongPlayer.currentSong);
             } else {
                 var song = currentAlbum.songs[currentSongIndex];
                 setSong(song);
@@ -92,7 +101,26 @@
                 }
         };
          
+         /**
+         * @function SongPlayer.next
+         *@desc gets the next index of the song array
+         *@param {object}
+         */
          
+         SongPlayer.next = function() {
+            var currentSongIndex = getSongIndex(SongPlayer.currentSong);
+            currentSongIndex++;
+             
+             var albumLength = (currentAlbum.songs.length - 1)
+             
+             if (currentSongIndex > albumLength) {
+                stopSong(SongPlayer.currentSong)
+            } else {
+                var song = currentAlbum.songs[currentSongIndex];
+                setSong(song);
+                playSong(song);
+                }
+        };
          
           return SongPlayer;
      }
